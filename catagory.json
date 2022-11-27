@@ -1,0 +1,69 @@
+[
+     {
+          "img":"https://3.imimg.com/data3/GL/AH/GLADMIN-20955/sports-bicycles-500x500.jpg",
+          "name":"Duronto",
+          "location":"mirpur",
+          "resalePrice":9990,
+          "sellerName":"Ashik",
+          "productsUsdTime":"9 month",
+          "catagoryId":"01",
+          "productsCatagory":"sports bike"
+
+     },
+     {
+          "img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDDawx9aCbVumYY6POvbwJ88kYO56WCKXthQ&usqp=CAU",
+          "name":"ponix",
+          "location":"badda",
+          "resalePrice": 11000,
+          "sellerName":"kuddus Ali",
+          "productsUsdTime":"6 month",
+          "catagoryId":"01",
+          "productsCatagory":"sports bike"
+
+     },
+     {
+          "img":"https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc3/GIN_X_e_bike.jpeg",
+          "name":"tesla",
+          "location":"Noakhali",
+          "resalePrice": 8000,
+          "sellerName":"Hossin",
+          "productsUsdTime":"11 month",
+          "catagoryId":"02",
+          "productsCatagory":"Electric bike"
+
+     },
+     {
+          "img":"https://cdn.trendhunterstatic.com/thumbs/484/gin-x-electric-bike.jpeg?auto=webp",
+          "name":"tesla",
+          "location":"Companigonj",
+          "resalePrice": 6000,
+          "sellerName":"Abdul",
+          "productsUsdTime":"12 month",
+          "catagoryId":"02",
+          "productsCatagory":"Electric bike"
+
+     },
+     {
+          "img":"https://target.scene7.com/is/image/Target/GUEST_8b71a338-e667-4dcf-ab79-3a7d14c007a6",
+          "name":"kids",
+          "location":"polton",
+          "resalePrice": 6000,
+          "sellerName":"rafi",
+          "productsUsdTime":"3 month",
+          "catagoryId":"03",
+          "productsCatagory":"Children Bike"
+
+     },
+     {
+          "img":"https://cdn.shopify.com/s/files/1/0405/1117/6862/products/IBeX8mxzToLxkNvtdnjg_Islabikes-Cnoc16-Pink-Childrens_Starter_Bike.jpg?v=1597748989",
+          "name":"kids",
+          "location":"khulna",
+          "resalePrice":9000,
+          "sellerName":"gollu",
+          "productsUsdTime":6500,
+          "catagoryId":"03",
+          "productsCatagory":"Children Bike"
+
+
+     }
+]
