@@ -7,8 +7,9 @@
           "sellerName":"Ashik",
           "productsUsdTime":"9 month",
           "catagoryId":"01",
-          "productsCatagory":"sports bike"
-
+          "productsCatagory":"sports bike",
+          "marketPrice": 15500,
+          "description":"this products is good and fresh condison"
      },
      {
           "img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDDawx9aCbVumYY6POvbwJ88kYO56WCKXthQ&usqp=CAU",
@@ -18,8 +19,10 @@
           "sellerName":"kuddus Ali",
           "productsUsdTime":"6 month",
           "catagoryId":"01",
-          "productsCatagory":"sports bike"
-
+          "productsCatagory":"sports bike",
+          "marketPrice": 16500,
+          "condisonType": "good",
+          "description":"this products is good and fresh condison"
      },
      {
           "img":"https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc3/GIN_X_e_bike.jpeg",
@@ -29,8 +32,10 @@
           "sellerName":"Hossin",
           "productsUsdTime":"11 month",
           "catagoryId":"02",
-          "productsCatagory":"Electric bike"
-
+          "productsCatagory":"Electric bike",
+          "marketPrice": 14500,
+          "condisonType": "good",
+          "description":"this products is good and fresh condison"
      },
      {
           "img":"https://cdn.trendhunterstatic.com/thumbs/484/gin-x-electric-bike.jpeg?auto=webp",
@@ -40,8 +45,10 @@
           "sellerName":"Abdul",
           "productsUsdTime":"12 month",
           "catagoryId":"02",
-          "productsCatagory":"Electric bike"
-
+          "productsCatagory":"Electric bike",
+          "marketPrice": 13500,
+          "condisonType": "Reasonable",
+          "description":"this products is good and fresh condison"
      },
      {
           "img":"https://target.scene7.com/is/image/Target/GUEST_8b71a338-e667-4dcf-ab79-3a7d14c007a6",
@@ -51,8 +58,11 @@
           "sellerName":"rafi",
           "productsUsdTime":"3 month",
           "catagoryId":"03",
-          "productsCatagory":"Children Bike"
-
+          "productsCatagory":"Children Bike",
+          "marketPrice": 12500,
+          "condisonType": "good",
+          "description":"this products is good and fresh condison"
+          
      },
      {
           "img":"https://cdn.shopify.com/s/files/1/0405/1117/6862/products/IBeX8mxzToLxkNvtdnjg_Islabikes-Cnoc16-Pink-Childrens_Starter_Bike.jpg?v=1597748989",
@@ -62,8 +72,9 @@
           "sellerName":"gollu",
           "productsUsdTime":6500,
           "catagoryId":"03",
-          "productsCatagory":"Children Bike"
-
-
+          "productsCatagory":"Children Bike",
+          "marketPrice": 15600,
+          "condisonType": "Reasonable",
+          "description":"this products is good and fresh condison"
      }
 ]
