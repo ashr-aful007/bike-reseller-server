@@ -15,6 +15,7 @@ app.use(express.json())
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster1.bsfuvd2.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
+
  
 function run(){
   try{
@@ -42,8 +43,9 @@ function run(){
        res.send(products)
     })
 
-    //email query
+    //email query for my orders
     app.get('/booking', async(req, res) =>{
+        // console.log('booking token',req.headers.authorization);
         const email = req.query.email;
         const query = {email: email}
         const bookign = await bookingdataCollection.find(query).toArray()
@@ -51,6 +53,7 @@ function run(){
     })
     //My products route
     app.get('/addProducts', async(req, res) =>{
+        console.log('add products token',req.headers.authorization);
         const email = req.query.email;
         const query = {sellerEmail: email}
         const addProducts = await productsCollection.find(query).toArray()
@@ -86,7 +89,7 @@ function run(){
        const query = {email: email}
        const user = await usersCollection.findOne(query)
        if(user){
-          const token = jwt.sign({email}, process.env.ACCESS_TOKEN, {expiresIn: '1h'})
+          const token = jwt.sign({email}, process.env.ACCESS_TOKEN, {expiresIn: '7d'})
           res.send({accesstoken: token})
        }
        res.status(503).send({accesstoken:''})
