@@ -158,6 +158,49 @@ function run(){
           res.send(users)
       })
 
+      //delete user
+      app.delete('/users/:id', async(req, res) =>{
+          const id = req.params.id;
+          const query = {_id: ObjectId(id)}
+          const result = await usersCollection.deleteOne(query)
+          res.send(result)
+      })
+      //delete my Products anathor route flow note remind those are same
+      app.delete('/myproducts/:id', async(req, res) =>{
+            const id = req.params.id;
+            const query = {_id: ObjectId(id)}
+            const result = await productsCollection.deleteOne(query)
+            res.send(result)
+      })
+
+      //get advertise products 
+      app.get('/products/alladvertise', async(req, res) =>{
+           const query = {}
+           const cursor = productsCollection.find({isAdvertise:{ $eq: 'true'}})
+           const advertise = await cursor.toArray()
+           res.send(advertise)
+      })
+
+      //advertise products
+      app.put('/products/advertise/:id', async(req,res) =>{
+          const id = req.params.id;
+          const filter = {_id: ObjectId(id)}
+          const options = {upsert: true}
+          const updateDoc ={
+             $set:{
+                isAdvertise: 'true'
+             }
+          }
+          const result = await productsCollection.updateOne(filter, updateDoc, options)
+          res.send(result)
+      })
+      //get vrifyed user 
+      app.get('/users/vrify', async(req,res) =>{
+          const query = {}
+          const fileter =  usersCollection.find({isVrifyed:{ $eq: 'true'}})
+          const vrifyuser = await fileter.toArray()
+          res.send(vrifyuser)
+      })
       //user vrify option route
       app.put('/users/vrify/:id', async(req, res) =>{
           const id = req.params.id;
