@@ -18,7 +18,6 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 function verifyJWT(req, res, next){
     
     const authHeader = req.headers.authorization;
-    console.log('insid jwt',req.headers.authorization);
     if(!authHeader){
         return res.status(401).send('unauthorized access')
     }
@@ -151,8 +150,8 @@ function run(){
           res.send({isUser: user?.role === 'User'})
       })
 
-      //get all users to email
-      app.get('/users', async(req, res) =>{
+      //get all seller with email
+      app.get('/users',async(req, res) =>{
           const role = req.query.role
           const query = {role: role};
           const users = await usersCollection.find(query).toArray()
