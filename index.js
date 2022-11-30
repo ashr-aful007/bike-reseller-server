@@ -1,5 +1,5 @@
 const express = require('express');
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
@@ -15,7 +15,23 @@ app.use(express.json())
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster1.bsfuvd2.mongodb.net/?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
-
+function verifyJWT(req, res, next){
+    
+    const authHeader = req.headers.authorization;
+    console.log('insid jwt',req.headers.authorization);
+    if(!authHeader){
+        return res.status(401).send('unauthorized access')
+    }
+    const token = authHeader.split(' ')[1];
+    jwt.verify(token, process.env.ACCESS_TOKEN, function(err, decoded){
+        if(err){
+             return res.status(403).send({message: 'forbidden access'})
+        }
+        req.decoded = decoded
+        next();
+    })
+    
+}
  
 function run(){
   try{
@@ -44,17 +60,26 @@ function run(){
     })
 
     //email query for my orders
-    app.get('/booking', async(req, res) =>{
-        // console.log('booking token',req.headers.authorization);
+    app.get('/booking', verifyJWT, async(req, res) =>{      
         const email = req.query.email;
+        const decodedEmail = req.decoded.email;
+        console.log(email,decodedEmail )
+        if(email !== decodedEmail){
+             return res.status(403).send({message: 'forbidden access'});
+        }
         const query = {email: email}
         const bookign = await bookingdataCollection.find(query).toArray()
         res.send(bookign)
     })
+
     //My products route
-    app.get('/addProducts', async(req, res) =>{
-        console.log('add products token',req.headers.authorization);
+    app.get('/addProducts',verifyJWT, async(req, res) =>{
         const email = req.query.email;
+        const decodedEmail = req.decoded.email;
+        console.log(email, decodedEmail)
+        if(email !== decodedEmail){
+             return res.status(403).send({message: 'forbidden access'});
+        }
         const query = {sellerEmail: email}
         const addProducts = await productsCollection.find(query).toArray()
         res.send(addProducts)
@@ -90,10 +115,32 @@ function run(){
        const user = await usersCollection.findOne(query)
        if(user){
           const token = jwt.sign({email}, process.env.ACCESS_TOKEN, {expiresIn: '7d'})
-          res.send({accesstoken: token})
+          return res.send({accesstoken: token})
        }
-       res.status(503).send({accesstoken:''})
+       res.status(403).send({accesstoken:''})
 
+      })
+
+      //get all users to email
+      app.get('/users', async(req, res) =>{
+          const role = req.query.role
+          const query = {role: role};
+          const users = await usersCollection.find(query).toArray()
+          res.send(users)
+      })
+
+      //user vrify option route
+      app.put('/users/vrify/:id', async(req, res) =>{
+          const id = req.params.id;
+          const filter = {_id: ObjectId(id)}
+          const options = {upsert: true}
+          const updateDoc ={
+             $set:{
+                 isVrifyed: 'true'
+             }
+          }
+          const result = await usersCollection.updateOne(filter, updateDoc, options)
+          res.send(result);
       })
 
   }
