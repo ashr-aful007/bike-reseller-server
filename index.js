@@ -201,6 +201,27 @@ function run(){
           const vrifyuser = await fileter.toArray()
           res.send(vrifyuser)
       })
+      //get reported item
+      app.get('/products/roported', async(req, res) =>{
+          const query = {}
+          const cursor = productsCollection.find({isReported:{$eq: 'true'}})
+          const reported = await cursor.toArray()
+          res.send(reported)
+      })
+
+      //is reported 
+      app.put('/products/reported/:id', async(req, res) =>{
+           const id = req.params.id;
+           const filter = {_id: ObjectId(id)}
+           const options = {upsert: true}
+           const updateDoc ={
+              $set:{
+                  isReported: 'true'
+              }
+           }
+           const result = await productsCollection.updateOne(filter,updateDoc,options)
+           res.send(result)
+      })
       //user vrify option route
       app.put('/users/vrify/:id', async(req, res) =>{
           const id = req.params.id;
