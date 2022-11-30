@@ -72,11 +72,10 @@ function run(){
         res.send(bookign)
     })
 
-    //My products route
+    //My products route note: this route for my products 
     app.get('/addProducts',verifyJWT, async(req, res) =>{
         const email = req.query.email;
         const decodedEmail = req.decoded.email;
-        console.log(email, decodedEmail)
         if(email !== decodedEmail){
              return res.status(403).send({message: 'forbidden access'});
         }
@@ -119,6 +118,37 @@ function run(){
        }
        res.status(403).send({accesstoken:''})
 
+      })
+
+      //check admin or not
+      app.get('/users/admin/:email',verifyJWT, async(req, res) =>{
+          const email = req.params.email;
+          const decodedEmail = req.decoded.email;
+          if(email !== decodedEmail){
+               return res.status(403).send({message: 'forbidden access'});
+          }         
+          const query = {email: email}
+          const user = await usersCollection.findOne(query)
+          res.send({isAdmin: user?.role === 'admin'});
+      })
+      
+      //check seller or not
+      app.get('/users/seller/:email',verifyJWT, async(req,res) =>{
+           const email = req.params.email;
+           const decodedEmail = req.decoded.email;
+           if(email !== decodedEmail){
+                return res.status(403).send({message: 'forbidden access'});
+           } 
+           const query = {email: email}
+           const user = await usersCollection.findOne(query)
+           res.send({isSeller: user?.role === 'seller'})
+      })
+      //check user or Not
+      app.get('/users/user/:email', async(req, res) =>{
+          const email = req.params.email;
+          const query = {email: email}
+          const user = await usersCollection.findOne(query)
+          res.send({isUser: user?.role === 'User'})
       })
 
       //get all users to email
